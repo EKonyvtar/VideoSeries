@@ -37,6 +37,25 @@ public class ScrollingActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemListener(
+                        getApplicationContext(),
+                        recyclerView,
+                        new RecyclerItemListener.RecyclerTouchListener() {
+                            public void onClickItem(View v, int position) {
+                                System.out.println("On Click Item interface");
+                                Video vid = VideoList.get(position);
+                                Snackbar.make(v, vid.getTitle(), Snackbar.LENGTH_LONG)
+                                        .setAction("Action", null).show();
+                            }
+
+                            public void onLongClickItem(View v, int position) {
+                                System.out.println("On Long Click Item interface");
+                            }
+                        }
+                )
+        );
+
 
         initVideoData();
 
