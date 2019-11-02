@@ -7,11 +7,21 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ScrollingActivity extends AppCompatActivity {
+
+    private List<Video> VideoList = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private VideoAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +29,16 @@ public class ScrollingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scrolling);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
+        mAdapter = new VideoAdapter(VideoList);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(mAdapter);
+
+        initVideoData();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -28,6 +48,25 @@ public class ScrollingActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    private void initVideoData() {
+        Video Video = new Video("Hello Android", "Ed Burnette");
+        VideoList.add(Video);
+
+        Video = new Video("Beginning Android 3", "Mark Murphy");
+        VideoList.add(Video);
+
+        Video = new Video("Unlocking Android", " W. Frank Ableson");
+        VideoList.add(Video);
+
+        Video = new Video("Android Tablet Development", "Wei Meng Lee");
+        VideoList.add(Video);
+
+        Video = new Video("Android Apps Security", "Sheran Gunasekera");
+        VideoList.add(Video);
+
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
