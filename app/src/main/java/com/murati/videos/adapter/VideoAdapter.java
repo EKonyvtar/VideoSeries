@@ -40,7 +40,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         final Video v = VideoList.get(position);
         holder.title.setText(VideoList.get(position).getTitle());
 
-
         holder.thumbnail.initialize(DeveloperKey.DEVELOPER_KEY, new YouTubeThumbnailView.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(final YouTubeThumbnailView youTubeThumbnailView, final YouTubeThumbnailLoader youTubeThumbnailLoader) {
@@ -78,20 +77,12 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
 
     public class VideoViewHolder extends RecyclerView.ViewHolder {
         public TextView title;
-        public TextView author;
         public YouTubeThumbnailView thumbnail;
-
-        //public final ThumbnailListener thumbnailListener;
-
 
         public VideoViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.text);
             thumbnail = (YouTubeThumbnailView) view.findViewById(R.id.thumbnail);
-            //thumbnailListener = new ThumbnailListener();
-            //YouTubeThumbnailLoader loader = ThumbnailListener.thumbnailViewToLoaderMap.get(thumbnail);
-
-            //author = (TextView) view.findViewById(R.id.author);
         }
     }
 }
