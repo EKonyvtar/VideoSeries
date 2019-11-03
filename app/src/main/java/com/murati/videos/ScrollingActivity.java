@@ -1,9 +1,13 @@
 package com.murati.videos;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,7 +17,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.youtube.player.YouTubeApiServiceUtil;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubeStandalonePlayer;
+import com.murati.videos.adapter.VideoItemListener;
+import com.murati.videos.adapter.VideoAdapter;
+import com.murati.videos.model.Video;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +42,8 @@ public class ScrollingActivity extends AppCompatActivity {
     private List<Video> VideoList = new ArrayList<>();
     private RecyclerView recyclerView;
     private VideoAdapter mAdapter;
+
+    private static final int RECOVERY_DIALOG_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +60,25 @@ public class ScrollingActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
         recyclerView.addOnItemTouchListener(
-                new RecyclerItemListener(
+                new VideoItemListener(
                         getApplicationContext(),
                         recyclerView,
-                        new RecyclerItemListener.RecyclerTouchListener() {
+                        new VideoItemListener.RecyclerTouchListener() {
                             public void onClickItem(View v, int position) {
                                 System.out.println("On Click Item interface");
                                 Video vid = VideoList.get(position);
-                                Snackbar.make(v, vid.getTitle(), Snackbar.LENGTH_LONG)
-                                        .setAction("Action", null).show();
+                                String videoId = vid.getVideoId();
+
+                                int startTime = 0;
+                                boolean autoplay = true;
+                                boolean lightboxMode = false;
+
+                                Intent intent = YouTubeStandalonePlayer.createVideoIntent(
+                                        (VideoListDemoActivity)v.getContext(),
+                                        DeveloperKey.DEVELOPER_KEY,
+                                        videoId, startTime, autoplay, lightboxMode);
+
+                                startActivity(intent);
                             }
 
                             public void onLongClickItem(View v, int position) {
@@ -57,7 +89,7 @@ public class ScrollingActivity extends AppCompatActivity {
         );
 
 
-        initVideoData();
+        initVideoData(this.getApplicationContext());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -67,26 +99,80 @@ public class ScrollingActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        checkYouTubeApi();
     }
 
-    private void initVideoData() {
-        Video Video = new Video("Hello Android", "Ed Burnette");
-        VideoList.add(Video);
+    private void checkYouTubeApi() {
+        YouTubeInitializationResult errorReason =
+                YouTubeApiServiceUtil.isYouTubeApiServiceAvailable(this);
+        if (errorReason.isUserRecoverableError()) {
+            errorReason.getErrorDialog(this, RECOVERY_DIALOG_REQUEST).show();
+        } else if (errorReason != YouTubeInitializationResult.SUCCESS) {
+            String errorMessage =
+                    String.format(getString(R.string.error_player), errorReason.toString());
+            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+        }
+    }
 
-        Video = new Video("Beginning Android 3", "Mark Murphy");
-        VideoList.add(Video);
+    private void initVideoData(Context c) {
+        //VideoList = new ArrayList<>();
+        try {
+            JSONObject jsonObj = fetchJSON(c);
+            if (jsonObj != null) {
+                JSONArray jsonTracks = jsonObj.getJSONArray("playlist");
 
-        Video = new Video("Unlocking Android", " W. Frank Ableson");
-        VideoList.add(Video);
-
-        Video = new Video("Android Tablet Development", "Wei Meng Lee");
-        VideoList.add(Video);
-
-        Video = new Video("Android Apps Security", "Sheran Gunasekera");
-        VideoList.add(Video);
+                if (jsonTracks != null) {
+                    for (int j = 0; j < jsonTracks.length(); j++) {
+                        VideoList.add(
+                                new Video(
+                                        jsonTracks.getJSONArray(j).getString(1),
+                                        jsonTracks.getJSONArray(j).getString(0)
+                                )
+                        );
+                    }
+                }
+            }
+        } catch (JSONException e) {
+            throw new RuntimeException("Could not retrieve videoList", e);
+        }
 
         mAdapter.notifyDataSetChanged();
     }
+
+    private  JSONObject fetchJSON(Context c) throws JSONException {
+        //TODO: pass as config
+        BufferedReader reader = null;
+        try {
+            InputStream is = c.getResources().openRawResource(R.raw.playlist);
+            Writer writer = new StringWriter();
+            char[] buffer = new char[1024];
+            try {
+                reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+                int n;
+                while ((n = reader.read(buffer)) != -1) {
+                    writer.write(buffer, 0, n);
+                }
+            } finally {
+                is.close();
+            }
+            return new JSONObject(writer.toString());
+        } catch (JSONException e) {
+            throw e;
+        } catch (Exception e) {
+            Log.e("ListObject", "fetchJSON: ",e );
+            return null;
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    // ignore
+                }
+            }
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

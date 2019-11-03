@@ -1,4 +1,4 @@
-package com.murati.videos;
+package com.murati.videos.model;
 
 public class Video {
 
