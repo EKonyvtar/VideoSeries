@@ -74,7 +74,7 @@ public class ScrollingActivity extends AppCompatActivity {
                                 boolean lightboxMode = false;
 
                                 Intent intent = YouTubeStandalonePlayer.createVideoIntent(
-                                        (VideoListDemoActivity)v.getContext(),
+                                        (ScrollingActivity)v.getContext(),
                                         DeveloperKey.DEVELOPER_KEY,
                                         videoId, startTime, autoplay, lightboxMode);
 

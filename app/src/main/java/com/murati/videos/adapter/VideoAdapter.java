@@ -49,17 +49,14 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
 
                     @Override
                     public void onThumbnailLoaded(YouTubeThumbnailView childYouTubeThumbnailView, String s) {
-                        //holder.loding.setVisibility(View.GONE);
-                        youTubeThumbnailLoader.release(); // spy ga memory lick
+                        youTubeThumbnailLoader.release();
                     }
 
                     @Override
                     public void onThumbnailError(YouTubeThumbnailView youTubeThumbnailView, YouTubeThumbnailLoader.ErrorReason errorReason) {
-                        youTubeThumbnailLoader.release(); // spy ga memory lick
+                        youTubeThumbnailLoader.release();
                     }
                 });
-
-                //readyForLoadingYoutubeThumbnail = true;
             }
 
             @Override
