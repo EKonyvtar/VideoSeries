@@ -17,7 +17,9 @@
 <resources>
     <string name="app_name">Video Series</string>
 
-    <string name="videolist_title">Video Series List</string>
+    <string name="videolist_title">Videók</string>
+    <string name="action_about">Névjegy</string>
+
 
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
 </resources>
