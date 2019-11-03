@@ -1,4 +1,4 @@
-package com.murati.videos;
+package com.murati.videos.adapter;
 
 import android.content.Context;
 import android.view.GestureDetector;
@@ -7,7 +7,7 @@ import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RecyclerItemListener
+public class VideoItemListener
         implements RecyclerView.OnItemTouchListener  {
 
     private RecyclerTouchListener listener;
@@ -18,8 +18,8 @@ public class RecyclerItemListener
         public void onLongClickItem(View v, int position);
     }
 
-    public RecyclerItemListener(Context ctx, final RecyclerView rv,
-                                final RecyclerTouchListener listener) {
+    public VideoItemListener(Context ctx, final RecyclerView rv,
+                             final RecyclerTouchListener listener) {
         this.listener = listener;
         gd = new GestureDetector(ctx,
                 new GestureDetector.SimpleOnGestureListener() {
