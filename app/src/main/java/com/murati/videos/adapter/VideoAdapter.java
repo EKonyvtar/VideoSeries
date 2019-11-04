@@ -10,14 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubeThumbnailLoader;
 import com.google.android.youtube.player.YouTubeThumbnailView;
-import com.murati.videos.DeveloperKey;
+import com.murati.videos.utils.DeveloperKey;
 import com.murati.videos.R;
-import com.murati.videos.VideoListDemoActivity;
 import com.murati.videos.model.Video;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHolder>{
 

@@ -29,6 +29,7 @@ import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import com.google.android.youtube.player.YouTubeThumbnailLoader;
 import com.google.android.youtube.player.YouTubeThumbnailLoader.ErrorReason;
 import com.google.android.youtube.player.YouTubeThumbnailView;
+import com.murati.videos.utils.DeveloperKey;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

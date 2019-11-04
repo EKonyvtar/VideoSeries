@@ -23,6 +23,8 @@ import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import com.murati.videos.adapter.VideoItemListener;
 import com.murati.videos.adapter.VideoAdapter;
 import com.murati.videos.model.Video;
+import com.murati.videos.utils.DeveloperKey;
+import com.murati.videos.utils.OfflineHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -116,61 +118,8 @@ public class ScrollingActivity extends AppCompatActivity {
     }
 
     private void initVideoData(Context c) {
-        //VideoList = new ArrayList<>();
-        try {
-            JSONObject jsonObj = fetchJSON(c);
-            if (jsonObj != null) {
-                JSONArray jsonTracks = jsonObj.getJSONArray("playlist");
-
-                if (jsonTracks != null) {
-                    for (int j = 0; j < jsonTracks.length(); j++) {
-                        VideoList.add(
-                                new Video(
-                                        jsonTracks.getJSONArray(j).getString(1),
-                                        jsonTracks.getJSONArray(j).getString(0)
-                                )
-                        );
-                    }
-                }
-            }
-        } catch (JSONException e) {
-            throw new RuntimeException("Could not retrieve videoList", e);
-        }
-
-        mAdapter.notifyDataSetChanged();
-    }
-
-    private  JSONObject fetchJSON(Context c) throws JSONException {
-        //TODO: pass as config
-        BufferedReader reader = null;
-        try {
-            InputStream is = c.getResources().openRawResource(R.raw.playlist);
-            Writer writer = new StringWriter();
-            char[] buffer = new char[1024];
-            try {
-                reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-                int n;
-                while ((n = reader.read(buffer)) != -1) {
-                    writer.write(buffer, 0, n);
-                }
-            } finally {
-                is.close();
-            }
-            return new JSONObject(writer.toString());
-        } catch (JSONException e) {
-            throw e;
-        } catch (Exception e) {
-            Log.e("ListObject", "fetchJSON: ",e );
-            return null;
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    // ignore
-                }
-            }
-        }
+       VideoList = OfflineHelper.getOfflineVideos(c, VideoList);
+       mAdapter.notifyDataSetChanged();
     }
 
 
