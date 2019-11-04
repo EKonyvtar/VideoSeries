@@ -21,6 +21,8 @@ import java.util.List;
 
 public class OfflineHelper {
 
+
+    //JQ [.items[]|[.snippet.resourceId.videoId,.snippet.title]]
     public static List<Video> getOfflineVideos(Context c, List<Video> VideoList) {
         //List<Video> VideoList = new ArrayList<>();
         try {

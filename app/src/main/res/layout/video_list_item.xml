@@ -32,7 +32,7 @@
   <com.google.android.youtube.player.YouTubeThumbnailView
       android:id="@+id/thumbnail"
       android:layout_width="wrap_content"
-      android:layout_height="match_parent"
+      android:layout_height="140dp"
       android:src="@drawable/no_thumbnail"
       android:adjustViewBounds="true"
       android:scaleType="centerInside"/>
