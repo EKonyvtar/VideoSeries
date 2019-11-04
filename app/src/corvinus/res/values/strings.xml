@@ -15,10 +15,12 @@
   limitations under the License.
 -->
 <resources>
-    <string name="app_name">Video Series</string>
+    <string name="app_name">Mesék Mátyás királyról</string>
 
-    <string name="videolist_title">Videók</string>
+    <string name="videolist_title">Mesék Mátyás királyról</string>
     <string name="action_about">Névjegy</string>
+
+    <string name="content_strip">Mesék Mátyás királyról:</string>
 
 
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
