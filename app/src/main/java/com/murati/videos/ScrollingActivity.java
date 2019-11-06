@@ -1,5 +1,6 @@
 package com.murati.videos;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -94,6 +95,9 @@ public class ScrollingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
+                Intent i = new Intent(ScrollingActivity.this, AboutActivity.class);
+                startActivity(i);
             }
         });
 

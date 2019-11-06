@@ -40,7 +40,6 @@ public class AboutActivity extends AppCompatActivity {
     static final String TAG = "ABOUT";
     private AdView mAdView;
 
-
     private void openBrowser(String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -51,7 +50,6 @@ public class AboutActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-
 
         // Version info
         final TextView versionText = findViewById(R.id.version);
@@ -82,13 +80,6 @@ public class AboutActivity extends AppCompatActivity {
         } catch (Exception ex) {
             Log.e(TAG, ex.getMessage());
         }
-
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        return true;
     }
 
     public String getVersion() {

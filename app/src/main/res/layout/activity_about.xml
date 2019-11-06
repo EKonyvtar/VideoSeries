@@ -14,7 +14,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<android.support.v4.widget.DrawerLayout
+<androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -124,14 +124,5 @@
 
             </LinearLayout>
         </ScrollView>
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/controls_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            app:cardElevation="8dp">
-
-        </android.support.v7.widget.CardView>
     </RelativeLayout>
-</android.support.v4.widget.DrawerLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
