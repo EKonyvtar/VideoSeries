@@ -20,6 +20,20 @@
     <string name="videolist_title">Mesék Mátyás királyról</string>
     <string name="action_about">Névjegy</string>
 
+    <string name="about_content">Mesék Mátyás királyról</string>
+    <string name="about_button_murati">Durchsuchen Sie murati.hu</string>
+    <string name="about_button_store">Öffnen Sie den Play Store</string>
+    <string name="about_button_support">Besuchen Sie die Patreon-Seite</string>
+    <string name="about_button_oszk">Besuchen Sie die Bibliothek</string>
+    <string name="about_footer">Vielen Dank für Ihre Unterstützung!</string>
+
+    <string name="about_privacy_label">Adatvédelem</string>
+    <string name="about_privacy" translatable="false">https://ekonyvtar.github.io/audiobook-privacy_policy.html</string>
+
+    <string name="admob_app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_unit_id_1" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+
+
     <string name="content_strip">Mesék Mátyás királyról:</string>
 
 

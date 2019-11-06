@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+//Add Crashlytics and performance
+apply plugin: 'io.fabric'
+//apply plugin: 'com.google.firebase.firebase-perf'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -42,6 +46,23 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+    //Firebase
+    implementation 'com.google.firebase:firebase-core:17.2.1'
+
+    //Crashlytics
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
+
+    //Performance
+    //implementation 'com.google.firebase:firebase-perf:19.0.1'
+
+    //Admob
+    implementation 'com.google.android.gms:play-services-ads:18.3.0'
+
+    //Remote Config
+    //implementation 'com.google.firebase:firebase-config:19.0.3'
+
+    //Youtube
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
     implementation 'pub.devrel:easypermissions:0.3.0'
     implementation('com.google.api-client:google-api-client-android:1.30.5') {
@@ -52,3 +73,6 @@ dependencies {
     }
 
 }
+
+
+apply plugin: 'com.google.gms.google-services'

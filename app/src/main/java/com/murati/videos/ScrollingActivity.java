@@ -26,16 +26,6 @@ import com.murati.videos.model.Video;
 import com.murati.videos.utils.DeveloperKey;
 import com.murati.videos.utils.OfflineHelper;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
