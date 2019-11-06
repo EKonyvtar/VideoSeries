@@ -57,6 +57,10 @@
         android:id="@+id/adView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_collapseMode="pin"
+        app:layout_anchor="@id/fab"
+        app:layout_anchorGravity="bottom"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
         app:adSize="BANNER"
         app:adUnitId="@string/admob_unit_id_1" />
 

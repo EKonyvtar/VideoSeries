@@ -33,10 +33,11 @@ public class OfflineHelper {
                 if (jsonTracks != null) {
                     for (int j = 0; j < jsonTracks.length(); j++) {
                         VideoList.add(
-                                new Video(
-                                        jsonTracks.getJSONArray(j).getString(1),
-                                        jsonTracks.getJSONArray(j).getString(0)
-                                )
+                            new Video(
+                                jsonTracks.getJSONArray(j).getString(1).
+                                        replace(c.getString(R.string.content_strip),""),
+                                jsonTracks.getJSONArray(j).getString(0)
+                            )
                         );
                     }
                 }
