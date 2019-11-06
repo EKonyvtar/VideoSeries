@@ -23,6 +23,15 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
 
+            <ImageView
+                android:id="@+id/toolbarImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:fitsSystemWindows="true"
+                android:src="@drawable/loading_thumbnail"
+                app:layout_collapseMode="parallax" />
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -43,5 +52,13 @@
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@android:drawable/ic_dialog_email" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:adSize="BANNER"
+        app:adUnitId="@string/admob_unit_id_1" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
