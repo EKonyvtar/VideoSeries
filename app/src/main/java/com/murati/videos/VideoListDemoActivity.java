@@ -498,7 +498,7 @@ public final class VideoListDemoActivity extends Activity implements OnFullscree
     public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean restored) {
       this.player = player;
       player.addFullscreenControlFlag(YouTubePlayer.FULLSCREEN_FLAG_CUSTOM_LAYOUT);
-      //player.setOnFullscreenListener((ScrollingActivity).getActivity());
+      //player.setOnFullscreenListener((VideoListActivity).getActivity());
       if (!restored && videoId != null) {
         player.cueVideo(videoId);
       }

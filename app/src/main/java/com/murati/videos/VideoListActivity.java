@@ -32,7 +32,7 @@ import com.murati.videos.utils.OfflineHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScrollingActivity extends AppCompatActivity {
+public class VideoListActivity extends AppCompatActivity {
 
     private List<Video> VideoList = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -76,7 +76,7 @@ public class ScrollingActivity extends AppCompatActivity {
                                 boolean lightboxMode = false;
 
                                 Intent intent = YouTubeStandalonePlayer.createVideoIntent(
-                                        (ScrollingActivity)v.getContext(),
+                                        (VideoListActivity)v.getContext(),
                                         DeveloperKey.DEVELOPER_KEY,
                                         videoId, startTime, autoplay, lightboxMode);
 
@@ -148,7 +148,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_about) {
-            Intent i = new Intent(ScrollingActivity.this, AboutActivity.class);
+            Intent i = new Intent(VideoListActivity.this, AboutActivity.class);
             startActivity(i);
             return true;
         }
