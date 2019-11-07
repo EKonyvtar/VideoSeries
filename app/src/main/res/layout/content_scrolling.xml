@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
-        android:background="@color/colorAccent"/>
+        android:background="@color/colorBackground"/>
 
 
 </androidx.core.widget.NestedScrollView>
