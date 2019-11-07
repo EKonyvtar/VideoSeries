@@ -43,7 +43,7 @@
   <TextView
       android:id="@+id/text"
       android:layout_width="match_parent"
-      android:layout_height="48dp"
+      android:layout_height="64dp"
       android:maxLines="2"
       android:text="This is a test title, relatively long"
       android:textAlignment="center"
