@@ -1,6 +1,5 @@
 package com.murati.videos;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +12,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.youtube.player.YouTubeApiServiceUtil;
@@ -36,6 +37,9 @@ public class ScrollingActivity extends AppCompatActivity {
     private List<Video> VideoList = new ArrayList<>();
     private RecyclerView recyclerView;
     private VideoAdapter mAdapter;
+
+    static final String TAG = "VIDMAIN";
+    private AdView mAdView;
 
     private static final int RECOVERY_DIALOG_REQUEST = 1;
 
@@ -95,13 +99,19 @@ public class ScrollingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-
-                Intent i = new Intent(ScrollingActivity.this, AboutActivity.class);
-                startActivity(i);
             }
         });
 
         checkYouTubeApi();
+
+        try {
+            MobileAds.initialize(this, getString(R.string.admob_app_id));
+            mAdView = findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+        } catch (Exception ex) {
+            Log.e(TAG, ex.getMessage());
+        }
     }
 
     private void checkYouTubeApi() {
@@ -137,7 +147,9 @@ public class ScrollingActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_about) {
+            Intent i = new Intent(ScrollingActivity.this, AboutActivity.class);
+            startActivity(i);
             return true;
         }
         return super.onOptionsItemSelected(item);
