@@ -84,6 +84,7 @@ dependencies {
     implementation('com.google.apis:google-api-services-youtube:v3-rev99-1.17.0-rc') {
         exclude group: 'org.apache.httpcomponents'
     }
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }
 
 

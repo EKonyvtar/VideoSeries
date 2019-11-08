@@ -55,7 +55,7 @@ public class VideoListActivity extends AppCompatActivity {
         UpdateConfig(this);
 
         //Start inflating
-        setContentView(R.layout.activity_scrolling);
+        setContentView(R.layout.activity_videolist);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

@@ -9,10 +9,6 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.android.youtube.player.YouTubeInitializationResult;
-import com.google.android.youtube.player.YouTubeThumbnailLoader;
-import com.google.android.youtube.player.YouTubeThumbnailView;
-import com.murati.videos.utils.DeveloperKey;
 import com.murati.videos.R;
 import com.murati.videos.model.Video;
 
@@ -29,7 +25,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     @Override
     public VideoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.video_list_item, parent, false);
+                .inflate(R.layout.videolist_item, parent, false);
 
         return new VideoViewHolder(itemView);
     }
