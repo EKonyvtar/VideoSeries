@@ -395,27 +395,7 @@ public final class VideoListDemoActivity extends Activity implements OnFullscree
       View view = convertView;
       VideoEntry entry = entries.get(position);
 
-      // There are three cases here
-      if (view == null) {
-        // 1) The view has not yet been created - we need to initialize the YouTubeThumbnailView.
-        view = inflater.inflate(R.layout.video_list_item, parent, false);
-        YouTubeThumbnailView thumbnail = (YouTubeThumbnailView) view.findViewById(R.id.thumbnail);
-        thumbnail.setTag(entry.videoId);
-        thumbnail.initialize(DeveloperKey.DEVELOPER_KEY, thumbnailListener);
-      } else {
-        YouTubeThumbnailView thumbnail = (YouTubeThumbnailView) view.findViewById(R.id.thumbnail);
-        YouTubeThumbnailLoader loader = thumbnailViewToLoaderMap.get(thumbnail);
-        if (loader == null) {
-          // 2) The view is already created, and is currently being initialized. We store the
-          //    current videoId in the tag.
-          thumbnail.setTag(entry.videoId);
-        } else {
-          // 3) The view is already created and already initialized. Simply set the right videoId
-          //    on the loader.
-          thumbnail.setImageResource(R.drawable.loading_thumbnail);
-          loader.setVideo(entry.videoId);
-        }
-      }
+
       TextView label = ((TextView) view.findViewById(R.id.text));
       label.setText(entry.text);
       label.setVisibility(labelsVisible ? View.VISIBLE : View.GONE);

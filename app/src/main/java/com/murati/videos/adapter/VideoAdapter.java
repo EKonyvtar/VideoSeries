@@ -45,32 +45,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
             //.placeholder(placeholder)
             .fitCenter()
             .into(holder.thumbnail2);
-
-        holder.thumbnail.initialize(DeveloperKey.DEVELOPER_KEY, new YouTubeThumbnailView.OnInitializedListener() {
-            @Override
-            public void onInitializationSuccess(final YouTubeThumbnailView youTubeThumbnailView, final YouTubeThumbnailLoader youTubeThumbnailLoader) {
-
-                youTubeThumbnailLoader.setVideo(v.getVideoId());
-                youTubeThumbnailLoader.setOnThumbnailLoadedListener(new YouTubeThumbnailLoader.OnThumbnailLoadedListener() {
-
-                    @Override
-                    public void onThumbnailLoaded(YouTubeThumbnailView childYouTubeThumbnailView, String s) {
-                        youTubeThumbnailLoader.release();
-                    }
-
-                    @Override
-                    public void onThumbnailError(YouTubeThumbnailView youTubeThumbnailView, YouTubeThumbnailLoader.ErrorReason errorReason) {
-                        youTubeThumbnailLoader.release();
-                    }
-                });
-            }
-
-            @Override
-            public void onInitializationFailure(YouTubeThumbnailView youTubeThumbnailView, YouTubeInitializationResult youTubeInitializationResult) {
-                //do nohing.. ada error, tambahin method ini jalan, error-nya lupa...
-                //readyForLoadingYoutubeThumbnail = true;
-            }
-        });
     }
 
     @Override
@@ -80,14 +54,14 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
 
     public class VideoViewHolder extends RecyclerView.ViewHolder {
         public TextView title;
-        public YouTubeThumbnailView thumbnail;
+        //public YouTubeThumbnailView thumbnail;
         public ImageView thumbnail2;
 
 
         public VideoViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.text);
-            thumbnail = (YouTubeThumbnailView) view.findViewById(R.id.thumbnail);
+            //thumbnail = (YouTubeThumbnailView) view.findViewById(R.id.thumbnail);
             thumbnail2 = (ImageView) view.findViewById(R.id.thumbnail2);
         }
     }
