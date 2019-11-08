@@ -1,6 +1,7 @@
 package com.murati.videos.utils;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.murati.videos.R;
@@ -19,11 +20,11 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OfflineHelper {
+public class VideoListHelper {
+    private final static String TAG = "OFFLINE";
 
-
-    //JQ [.items[]|[.snippet.resourceId.videoId,.snippet.title]]
-    public static List<Video> getOfflineVideos(Context c, List<Video> VideoList) {
+    //JQ [.items[]|[.snippet.resourceId.videoId,.snippet.title,.snippet.thumbnails.standard.url]]
+    public static List<Video> getVideoList(Context c, List<Video> VideoList) {
         //List<Video> VideoList = new ArrayList<>();
         try {
             JSONObject jsonObj = fetchJSON(c);
@@ -50,7 +51,23 @@ public class OfflineHelper {
     }
 
     private static JSONObject fetchJSON(Context c) throws JSONException {
-        //TODO: pass as config
+        JSONObject json = null;
+
+        try {
+            String jsonStr = ConfigHelper.getConfig().getString("youtube_playlist_items");
+            if (! TextUtils.isEmpty(jsonStr))
+                json = new JSONObject(jsonStr);
+
+        } catch (Exception ex) {
+            Log.e(TAG, ex.getMessage());
+        }
+
+        if (json != null)
+            return json;
+
+
+        //Else continue with written config
+        //TODO: remove later
         BufferedReader reader = null;
         try {
             InputStream is = c.getResources().openRawResource(R.raw.playlist);

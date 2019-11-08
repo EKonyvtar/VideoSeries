@@ -27,10 +27,12 @@ import com.murati.videos.adapter.VideoItemListener;
 import com.murati.videos.adapter.VideoAdapter;
 import com.murati.videos.model.Video;
 import com.murati.videos.utils.DeveloperKey;
-import com.murati.videos.utils.OfflineHelper;
+import com.murati.videos.utils.VideoListHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.murati.videos.utils.ConfigHelper.UpdateConfig;
 
 public class VideoListActivity extends AppCompatActivity {
 
@@ -46,6 +48,11 @@ public class VideoListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Update remote config
+        UpdateConfig(this);
+
+        //Start inflating
         setContentView(R.layout.activity_scrolling);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -104,6 +111,8 @@ public class VideoListActivity extends AppCompatActivity {
 
         checkYouTubeApi();
 
+
+        // Loading ads
         try {
             MobileAds.initialize(this, getString(R.string.admob_app_id));
             mAdView = findViewById(R.id.adView);
@@ -112,6 +121,8 @@ public class VideoListActivity extends AppCompatActivity {
         } catch (Exception ex) {
             Log.e(TAG, ex.getMessage());
         }
+
+
     }
 
     private void checkYouTubeApi() {
@@ -127,7 +138,7 @@ public class VideoListActivity extends AppCompatActivity {
     }
 
     private void initVideoData(Context c) {
-       VideoList = OfflineHelper.getOfflineVideos(c, VideoList);
+       VideoList = VideoListHelper.getVideoList(c, VideoList);
        mAdapter.notifyDataSetChanged();
     }
 

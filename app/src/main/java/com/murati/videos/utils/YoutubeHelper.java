@@ -23,10 +23,12 @@ import java.util.Collection;
 
 import java.util.List;
 
+
+// TODO implement later
 public class YoutubeHelper {
 
-    //JQ [.items[]|[.snippet.resourceId.videoId,.snippet.title]]
-
+    //JQ [.items[]|[.snippet.resourceId.videoId,.snippet.title,.snippet.thumbnails.standard.url]]
+    // https://developers.google.com/youtube/v3/docs/playlistItems/list?apix_params=%7B%22part%22%3A%22id%2Csnippet%22%2C%22playlistId%22%3A%22PLg_AyQoUGXhzMQC7weZTEHBlR6Mb98c89%22%7D
     public static List<Video> getVideosByPlaylist(String playlistId) {
 
         //curl \
