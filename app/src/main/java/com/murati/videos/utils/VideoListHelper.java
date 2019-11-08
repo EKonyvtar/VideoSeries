@@ -37,7 +37,8 @@ public class VideoListHelper {
                             new Video(
                                 jsonTracks.getJSONArray(j).getString(1).
                                         replace(c.getString(R.string.content_strip),""),
-                                jsonTracks.getJSONArray(j).getString(0)
+                                    jsonTracks.getJSONArray(j).getString(0),
+                                    jsonTracks.getJSONArray(j).getString(2)
                             )
                         );
                     }

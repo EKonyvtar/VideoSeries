@@ -6,9 +6,10 @@ public class Video {
     private String videoId;
     private String thumbnailImage;
 
-    public Video(String title, String videoId) {
+    public Video(String title, String videoId, String thumbnailImage) {
         this.title = title;
         this.videoId = videoId;
+        this.thumbnailImage = thumbnailImage;
     }
 
     public String getTitle() {
