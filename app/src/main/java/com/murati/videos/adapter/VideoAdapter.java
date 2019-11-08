@@ -73,6 +73,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         public TextView title;
         public YouTubeThumbnailView thumbnail;
 
+
         public VideoViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.text);
