@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.google.firebase.perf.metrics.AddTrace;
 import com.murati.videos.R;
 import com.murati.videos.model.Video;
 
@@ -50,6 +51,7 @@ public class VideoListHelper {
         return VideoList;
     }
 
+    @AddTrace(name = "getVideoList", enabled = true /* optional */)
     public static List<Video> getVideoList(Context c, List<Video> VideoList) {
         try {
             convertVideoList(c, getRemoteJSON(c), VideoList);

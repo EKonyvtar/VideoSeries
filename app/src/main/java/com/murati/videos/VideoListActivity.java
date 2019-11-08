@@ -23,6 +23,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.youtube.player.YouTubeApiServiceUtil;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
+import com.google.firebase.perf.metrics.AddTrace;
 import com.murati.videos.adapter.VideoItemListener;
 import com.murati.videos.adapter.VideoAdapter;
 import com.murati.videos.model.Video;
@@ -46,6 +47,7 @@ public class VideoListActivity extends AppCompatActivity {
     private static final int RECOVERY_DIALOG_REQUEST = 1;
 
     @Override
+    @AddTrace(name = "onCreateVideoList", enabled = true /* optional */)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
