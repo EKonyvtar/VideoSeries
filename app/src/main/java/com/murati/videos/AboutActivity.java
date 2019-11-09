@@ -55,12 +55,6 @@ public class AboutActivity extends AppCompatActivity {
         final TextView versionText = findViewById(R.id.version);
         versionText.setText(getVersion());
 
-        // Button
-        final Button button = findViewById(R.id.murati);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) { openBrowser("https://murati.hu"); }
-        });
-
         final Button privacy = findViewById(R.id.privacy);
         privacy.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) { openBrowser(getString(R.string.about_privacy)); }
