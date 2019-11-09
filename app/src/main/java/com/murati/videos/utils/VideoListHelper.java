@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.google.firebase.perf.metrics.AddTrace;
 import com.murati.videos.R;
 import com.murati.videos.model.Video;
 
@@ -24,10 +25,9 @@ public class VideoListHelper {
     private final static String TAG = "OFFLINE";
 
     //JQ [.items[]|[.snippet.resourceId.videoId,.snippet.title,.snippet.thumbnails.standard.url]]
-    public static List<Video> getVideoList(Context c, List<Video> VideoList) {
+    public static List<Video> convertVideoList(Context c, JSONObject jsonObj, List<Video> VideoList) {
         //List<Video> VideoList = new ArrayList<>();
         try {
-            JSONObject jsonObj = fetchJSON(c);
             if (jsonObj != null) {
                 JSONArray jsonTracks = jsonObj.getJSONArray("playlist");
 
@@ -45,30 +45,40 @@ public class VideoListHelper {
                 }
             }
         } catch (JSONException e) {
-            throw new RuntimeException("Could not retrieve videoList", e);
+            throw new RuntimeException("Could not parse videolist", e);
         }
 
         return VideoList;
     }
 
-    private static JSONObject fetchJSON(Context c) throws JSONException {
-        JSONObject json = null;
-
+    @AddTrace(name = "getVideoList", enabled = true /* optional */)
+    public static List<Video> getVideoList(Context c, List<Video> VideoList) {
         try {
-            String jsonStr = ConfigHelper.getConfig().getString("youtube_playlist_items");
-            if (! TextUtils.isEmpty(jsonStr))
-                json = new JSONObject(jsonStr);
-
+            convertVideoList(c, getRemoteJSON(c), VideoList);
         } catch (Exception ex) {
-            Log.e(TAG, ex.getMessage());
+            Log.e(TAG, "Failed to fetch remote config" + ex.getMessage());
         }
 
-        if (json != null)
-            return json;
+        if (!VideoList.isEmpty()) return VideoList;
+
+        try {
+            convertVideoList(c, getDefaultJSON(c), VideoList);
+        } catch (Exception ex) {
+            Log.e(TAG, "Fatal.. Unable to fetch default config" + ex.getMessage());
+        }
+        return VideoList;
+    }
 
 
-        //Else continue with written config
-        //TODO: remove later
+    private static JSONObject getRemoteJSON(Context c) throws JSONException {
+        return new JSONObject(
+                ConfigHelper.getConfig().
+                        getString("youtube_playlist_items")
+        );
+    }
+
+    private static JSONObject getDefaultJSON(Context c) throws JSONException {
+        //TODO: replace with default values
         BufferedReader reader = null;
         try {
             InputStream is = c.getResources().openRawResource(R.raw.playlist);
@@ -84,10 +94,8 @@ public class VideoListHelper {
                 is.close();
             }
             return new JSONObject(writer.toString());
-        } catch (JSONException e) {
-            throw e;
         } catch (Exception e) {
-            Log.e("ListObject", "fetchJSON: ",e );
+            Log.e("ListObject", "fetchJSON: ", e);
             return null;
         } finally {
             if (reader != null) {

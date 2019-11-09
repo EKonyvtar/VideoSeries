@@ -23,9 +23,11 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.youtube.player.YouTubeApiServiceUtil;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
+import com.google.firebase.perf.metrics.AddTrace;
 import com.murati.videos.adapter.VideoItemListener;
 import com.murati.videos.adapter.VideoAdapter;
 import com.murati.videos.model.Video;
+import com.murati.videos.utils.AdHelper;
 import com.murati.videos.utils.DeveloperKey;
 import com.murati.videos.utils.VideoListHelper;
 
@@ -46,6 +48,7 @@ public class VideoListActivity extends AppCompatActivity {
     private static final int RECOVERY_DIALOG_REQUEST = 1;
 
     @Override
+    @AddTrace(name = "onCreateVideoList", enabled = true /* optional */)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -53,7 +56,7 @@ public class VideoListActivity extends AppCompatActivity {
         UpdateConfig(this);
 
         //Start inflating
-        setContentView(R.layout.activity_scrolling);
+        setContentView(R.layout.activity_videolist);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -112,17 +115,17 @@ public class VideoListActivity extends AppCompatActivity {
         checkYouTubeApi();
 
 
-        // Loading ads
+        //Advertisement
         try {
-            MobileAds.initialize(this, getString(R.string.admob_app_id));
             mAdView = findViewById(R.id.adView);
-            AdRequest adRequest = new AdRequest.Builder().build();
-            mAdView.loadAd(adRequest);
+            AdHelper.InitializeAd(
+                    this.getApplicationContext(),
+                    getString(R.string.admob_app_id),
+                    mAdView,
+                    TAG);
         } catch (Exception ex) {
             Log.e(TAG, ex.getMessage());
         }
-
-
     }
 
     private void checkYouTubeApi() {

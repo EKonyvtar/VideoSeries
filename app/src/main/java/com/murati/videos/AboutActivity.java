@@ -28,9 +28,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.murati.videos.utils.AdHelper;
 
 /**
  * Placeholder activity for features that are not implemented in this sample, but
@@ -55,12 +57,6 @@ public class AboutActivity extends AppCompatActivity {
         final TextView versionText = findViewById(R.id.version);
         versionText.setText(getVersion());
 
-        // Button
-        final Button button = findViewById(R.id.murati);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) { openBrowser("https://murati.hu"); }
-        });
-
         final Button privacy = findViewById(R.id.privacy);
         privacy.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) { openBrowser(getString(R.string.about_privacy)); }
@@ -72,11 +68,14 @@ public class AboutActivity extends AppCompatActivity {
             public void onClick(View v) { openBrowser("https://www.patreon.com/murati");}
         });
 
+        //Advertisement
         try {
-            MobileAds.initialize(this, getString(R.string.admob_app_id));
             mAdView = findViewById(R.id.adView);
-            AdRequest adRequest = new AdRequest.Builder().build();
-            mAdView.loadAd(adRequest);
+            AdHelper.InitializeAd(
+                    this.getApplicationContext(),
+                    getString(R.string.admob_app_id),
+                    mAdView,
+                    TAG);
         } catch (Exception ex) {
             Log.e(TAG, ex.getMessage());
         }

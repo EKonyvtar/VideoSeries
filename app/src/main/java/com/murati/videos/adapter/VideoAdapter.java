@@ -3,14 +3,12 @@ package com.murati.videos.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.youtube.player.YouTubeInitializationResult;
-import com.google.android.youtube.player.YouTubeThumbnailLoader;
-import com.google.android.youtube.player.YouTubeThumbnailView;
-import com.murati.videos.utils.DeveloperKey;
+import com.bumptech.glide.Glide;
 import com.murati.videos.R;
 import com.murati.videos.model.Video;
 
@@ -27,7 +25,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     @Override
     public VideoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.video_list_item, parent, false);
+                .inflate(R.layout.videolist_item, parent, false);
 
         return new VideoViewHolder(itemView);
     }
@@ -37,31 +35,12 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         final Video v = VideoList.get(position);
         holder.title.setText(VideoList.get(position).getTitle());
 
-        holder.thumbnail.initialize(DeveloperKey.DEVELOPER_KEY, new YouTubeThumbnailView.OnInitializedListener() {
-            @Override
-            public void onInitializationSuccess(final YouTubeThumbnailView youTubeThumbnailView, final YouTubeThumbnailLoader youTubeThumbnailLoader) {
-
-                youTubeThumbnailLoader.setVideo(v.getVideoId());
-                youTubeThumbnailLoader.setOnThumbnailLoadedListener(new YouTubeThumbnailLoader.OnThumbnailLoadedListener() {
-
-                    @Override
-                    public void onThumbnailLoaded(YouTubeThumbnailView childYouTubeThumbnailView, String s) {
-                        youTubeThumbnailLoader.release();
-                    }
-
-                    @Override
-                    public void onThumbnailError(YouTubeThumbnailView youTubeThumbnailView, YouTubeThumbnailLoader.ErrorReason errorReason) {
-                        youTubeThumbnailLoader.release();
-                    }
-                });
-            }
-
-            @Override
-            public void onInitializationFailure(YouTubeThumbnailView youTubeThumbnailView, YouTubeInitializationResult youTubeInitializationResult) {
-                //do nohing.. ada error, tambahin method ini jalan, error-nya lupa...
-                //readyForLoadingYoutubeThumbnail = true;
-            }
-        });
+        Glide
+            .with(holder.itemView)
+            .load(v.getThumbnailImage())
+            //.placeholder(placeholder)
+            .fitCenter()
+            .into(holder.thumbnail2);
     }
 
     @Override
@@ -71,12 +50,15 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
 
     public class VideoViewHolder extends RecyclerView.ViewHolder {
         public TextView title;
-        public YouTubeThumbnailView thumbnail;
+        //public YouTubeThumbnailView thumbnail;
+        public ImageView thumbnail2;
+
 
         public VideoViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.text);
-            thumbnail = (YouTubeThumbnailView) view.findViewById(R.id.thumbnail);
+            //thumbnail = (YouTubeThumbnailView) view.findViewById(R.id.thumbnail);
+            thumbnail2 = (ImageView) view.findViewById(R.id.thumbnail2);
         }
     }
 }
