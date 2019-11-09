@@ -27,6 +27,7 @@ import com.google.firebase.perf.metrics.AddTrace;
 import com.murati.videos.adapter.VideoItemListener;
 import com.murati.videos.adapter.VideoAdapter;
 import com.murati.videos.model.Video;
+import com.murati.videos.utils.AdHelper;
 import com.murati.videos.utils.DeveloperKey;
 import com.murati.videos.utils.VideoListHelper;
 
@@ -114,17 +115,17 @@ public class VideoListActivity extends AppCompatActivity {
         checkYouTubeApi();
 
 
-        // Loading ads
+        //Advertisement
         try {
-            MobileAds.initialize(this, getString(R.string.admob_app_id));
             mAdView = findViewById(R.id.adView);
-            AdRequest adRequest = new AdRequest.Builder().build();
-            mAdView.loadAd(adRequest);
+            AdHelper.InitializeAd(
+                    this.getApplicationContext(),
+                    getString(R.string.admob_app_id),
+                    mAdView,
+                    TAG);
         } catch (Exception ex) {
             Log.e(TAG, ex.getMessage());
         }
-
-
     }
 
     private void checkYouTubeApi() {
