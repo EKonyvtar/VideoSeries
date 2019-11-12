@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- START xml_defaults -->
+<defaultsMap>
+    <entry>
+        <key>google_api_key</key>
+        <value>test123</value>
+    </entry>
+    <entry>
+        <key>youtube_playlist_items</key>
+        <value>{"playlist": [
+            [
+            "aZzDC9V2vtI",
+            "Mesék Mátyás királyról: Az igazmondó juhász",
+            "https://i.ytimg.com/vi/aZzDC9V2vtI/sddefault.jpg"
+            ],
+            [
+            "NGOsB5XsK54",
+            "Mesék Mátyás királyról: Egyszer volt Budán kutyavásár",
+            "https://i.ytimg.com/vi/NGOsB5XsK54/sddefault.jpg"
+            ],
+            [
+            "Gx3nZ0t6HVg",
+            "Mesék Mátyás királyról: Beatrix királyné tréfája",
+            "https://i.ytimg.com/vi/Gx3nZ0t6HVg/sddefault.jpg"
+            ],
+            [
+            "56f_30sWgMc",
+            "Mesék Mátyás királyról: A cinkotai kántor",
+            "https://i.ytimg.com/vi/56f_30sWgMc/sddefault.jpg"
+            ],
+            [
+            "_G6ksv3_pcM",
+            "Mesék Mátyás királyról: Mátyás király Gömörben",
+            "https://i.ytimg.com/vi/_G6ksv3_pcM/sddefault.jpg"
+            ],
+            [
+            "wfqy74O_NwA",
+            "Mesék Mátyás királyról: A kolozsvári bíró",
+            "https://i.ytimg.com/vi/wfqy74O_NwA/sddefault.jpg"
+            ],
+            [
+            "Xe6MFo0_62Q",
+            "Mesék Mátyás királyról: A három bakkecske",
+            "https://i.ytimg.com/vi/Xe6MFo0_62Q/sddefault.jpg"
+            ],
+            [
+            "vgGG_1zETD0",
+            "Mesék Mátyás királyról: Mátyás szolgái",
+            "https://i.ytimg.com/vi/vgGG_1zETD0/sddefault.jpg"
+            ],
+            [
+            "7mmqk9Ky1uM",
+            "Mesék Mátyás királyról: Furcsa látogatók",
+            "https://i.ytimg.com/vi/7mmqk9Ky1uM/sddefault.jpg"
+            ],
+            [
+            "dwkxPrRGxPA",
+            "Mesék Mátyás királyról: Mátyás kovács",
+            "https://i.ytimg.com/vi/dwkxPrRGxPA/sddefault.jpg"
+            ],
+            [
+            "h-X7y4hAOGA",
+            "Mesék Mátyás királyról: A tök és a négy ökör",
+            "https://i.ytimg.com/vi/h-X7y4hAOGA/sddefault.jpg"
+            ],
+            [
+            "5DS8MQwHiN0",
+            "Mesék Mátyás királyról: A nekeresdi bírók",
+            "https://i.ytimg.com/vi/5DS8MQwHiN0/sddefault.jpg"
+            ],
+            [
+            "vsj4aSFsL0o",
+            "Mesék Mátyás királyról: A névnapi jóslat",
+            "https://i.ytimg.com/vi/vsj4aSFsL0o/sddefault.jpg"
+            ]
+            ]
+
+            }</value>
+    </entry>
+</defaultsMap>
+<!-- END xml_defaults -->
