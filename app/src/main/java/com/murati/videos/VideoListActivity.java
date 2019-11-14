@@ -81,7 +81,7 @@ public class VideoListActivity extends AppCompatActivity {
                                 Video vid = VideoList.get(position);
                                 String videoId = vid.getVideoId();
 
-                                int startTime = 0;
+                                int startTime = vid.getStartTime();
                                 boolean autoplay = true;
                                 boolean lightboxMode = false;
 
