@@ -33,14 +33,25 @@ public class VideoListHelper {
 
                 if (jsonTracks != null) {
                     for (int j = 0; j < jsonTracks.length(); j++) {
-                        VideoList.add(
-                            new Video(
-                                jsonTracks.getJSONArray(j).getString(1).
-                                        replace(c.getString(R.string.content_strip),""),
+                        //Shitty array-schema --> TODO: fix new schema
+                        try {
+                            Video v = new Video(
+                                    jsonTracks.getJSONArray(j).getString(1).
+                                            replace(c.getString(R.string.content_strip), ""),
                                     jsonTracks.getJSONArray(j).getString(0),
                                     jsonTracks.getJSONArray(j).getString(2)
-                            )
-                        );
+                            );
+                            try {
+                                v.setStartTime(Integer.parseInt(jsonTracks.getJSONArray(j).getString(3)));
+                            } catch (Exception ex) {
+                                //TODO
+                            }
+                            VideoList.add(v);
+
+
+                        } catch (Exception ex) {
+                            Log.e(TAG, "Error parsing item " + j);
+                        }
                     }
                 }
             }
