@@ -15,14 +15,14 @@
   limitations under the License.
 -->
 <resources>
-    <string name="app_name">Mesék Mátyás királyról</string>
-    <string name="videolist_title">Mesék Mátyás királyról</string>
-    <string name="content_strip">Mesék Mátyás királyról:</string>
+    <string name="app_name">Dr Bubó</string>
+    <string name="videolist_title">Dr Bubó</string>
+    <string name="content_strip"></string>
 
     <!-- About -->
     <string name="action_about">Névjegy</string>
     <string name="about_content">
-        Ez az alkalmazás Mátyás Király történeteit szeretné megőrizni gyermekeink és unokáink számára
+        Ez az alkalmazás Dr Bubó történeteit szeretné megőrizni gyermekeink és unokáink számára
         az interneten elérhető ingyenes videó és egyéb tartalmak összegyűjtésével.
 
         A tartalmak szerzői és tulajdonosai a videólinkek alatt megtalálhatóak.
