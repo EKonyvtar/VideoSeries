@@ -90,6 +90,7 @@ public class VideoListHelper {
 
     private static JSONObject getDefaultJSON(Context c) throws JSONException {
         //TODO: replace with default values
+        //ConfigHelper.getConfig().
         BufferedReader reader = null;
         try {
             InputStream is = c.getResources().openRawResource(R.raw.playlist);
