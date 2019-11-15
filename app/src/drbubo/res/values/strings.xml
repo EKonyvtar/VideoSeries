@@ -21,6 +21,13 @@
 
     <!-- About -->
     <string name="action_about">Névjegy</string>
+
+    <string name="copyright">
+    A rajzfilmet rendezte: Nepp József és Ternovszky Béla
+    Gyártója a Pannónia Filmstúdió, és eredeti tulajdonosa a Magyar Televízió.
+    Minden terjesztési jog őket illeti meg.
+    </string>
+
     <string name="about_content">
         Ez az alkalmazás Dr Bubó történeteit szeretné megőrizni gyermekeink és unokáink számára
         az interneten elérhető ingyenes videó és egyéb tartalmak összegyűjtésével.
