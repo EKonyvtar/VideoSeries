@@ -17,7 +17,7 @@
 <resources>
     <string name="app_name">Dr Bubó</string>
     <string name="videolist_title">Dr Bubó</string>
-    <string name="content_strip"></string>
+    <string name="content_strip">Dr Bubó - Kérem a következőt: </string>
 
     <!-- About -->
     <string name="action_about">Névjegy</string>

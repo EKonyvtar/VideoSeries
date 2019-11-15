@@ -1,7 +1,6 @@
 package com.murati.videos.utils;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.firebase.perf.metrics.AddTrace;
@@ -18,7 +17,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.util.ArrayList;
 import java.util.List;
 
 public class VideoListHelper {
@@ -42,7 +40,7 @@ public class VideoListHelper {
                                     jsonTracks.getJSONArray(j).getString(2)
                             );
                             try {
-                                v.setStartTime(Integer.parseInt(jsonTracks.getJSONArray(j).getString(3)));
+                                v.setStartAt(Integer.parseInt(jsonTracks.getJSONArray(j).getString(3)));
                             } catch (Exception ex) {
                                 //TODO
                             }
