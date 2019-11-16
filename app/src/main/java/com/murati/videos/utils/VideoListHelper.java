@@ -1,7 +1,6 @@
 package com.murati.videos.utils;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.firebase.perf.metrics.AddTrace;
@@ -18,7 +17,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.util.ArrayList;
 import java.util.List;
 
 public class VideoListHelper {
@@ -33,14 +31,25 @@ public class VideoListHelper {
 
                 if (jsonTracks != null) {
                     for (int j = 0; j < jsonTracks.length(); j++) {
-                        VideoList.add(
-                            new Video(
-                                jsonTracks.getJSONArray(j).getString(1).
-                                        replace(c.getString(R.string.content_strip),""),
+                        //Shitty array-schema --> TODO: fix new schema
+                        try {
+                            Video v = new Video(
+                                    jsonTracks.getJSONArray(j).getString(1).
+                                            replace(c.getString(R.string.content_strip), ""),
                                     jsonTracks.getJSONArray(j).getString(0),
                                     jsonTracks.getJSONArray(j).getString(2)
-                            )
-                        );
+                            );
+                            try {
+                                v.setStartAt(Integer.parseInt(jsonTracks.getJSONArray(j).getString(3)));
+                            } catch (Exception ex) {
+                                //TODO
+                            }
+                            VideoList.add(v);
+
+
+                        } catch (Exception ex) {
+                            Log.e(TAG, "Error parsing item " + j);
+                        }
                     }
                 }
             }
@@ -79,6 +88,7 @@ public class VideoListHelper {
 
     private static JSONObject getDefaultJSON(Context c) throws JSONException {
         //TODO: replace with default values
+        //ConfigHelper.getConfig().
         BufferedReader reader = null;
         try {
             InputStream is = c.getResources().openRawResource(R.raw.playlist);

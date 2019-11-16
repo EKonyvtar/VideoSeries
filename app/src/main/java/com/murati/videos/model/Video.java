@@ -5,6 +5,7 @@ public class Video {
     private String title;
     private String videoId;
     private String thumbnailImage;
+    private int startAt = 0;
 
     public Video(String title, String videoId, String thumbnailImage) {
         this.title = title;
@@ -30,6 +31,13 @@ public class Video {
 
     public String getVideoId() {
         return videoId;
+    }
+
+    public int getStartAt() {
+        return startAt;
+    }
+    public void setStartAt(int startAt) {
+         this.startAt = startAt;
     }
 
     public void setVideoId(String videoId) {

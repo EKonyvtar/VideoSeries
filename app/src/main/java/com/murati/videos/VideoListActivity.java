@@ -15,9 +15,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.youtube.player.YouTubeApiServiceUtil;
@@ -81,7 +79,7 @@ public class VideoListActivity extends AppCompatActivity {
                                 Video vid = VideoList.get(position);
                                 String videoId = vid.getVideoId();
 
-                                int startTime = 0;
+                                int startTime = vid.getStartAt() * 1000;
                                 boolean autoplay = true;
                                 boolean lightboxMode = false;
 
