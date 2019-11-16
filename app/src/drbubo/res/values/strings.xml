@@ -39,7 +39,7 @@
     <string name="about_footer">Az app még fejleszés alatt áll, így minden segítséget, javaslatot és támogatást megköszönünk!</string>
 
     <string name="about_privacy_label">Adatvédelmi nzilatkozat</string>
-    <string name="about_privacy" translatable="false">https://ekonyvtar.github.io/audiobook-privacy_policy.html</string>
+    <string name="about_privacy" translatable="false">https://ekonyvtar.github.io/apps-privacy_policy.html</string>
 
     <!-- Admob -->
     <string name="admob_app_id" translatable="false">ca-app-pub-2604838220069332~9702975298</string>
