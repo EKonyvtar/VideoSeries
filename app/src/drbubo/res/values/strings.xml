@@ -42,8 +42,8 @@
     <string name="about_privacy" translatable="false">https://ekonyvtar.github.io/apps-privacy_policy.html</string>
 
     <!-- Admob -->
-    <string name="admob_app_id" translatable="false">ca-app-pub-2604838220069332~9702975298</string>
-    <string name="admob_unit_id_1" translatable="false">ca-app-pub-2604838220069332/6948001202</string>
+    <string name="admob_app_id" translatable="false">ca-app-pub-2604838220069332~9639745161</string>
+    <string name="admob_unit_id_1" translatable="false">ca-app-pub-2604838220069332/1761255143</string>
 
 
 
