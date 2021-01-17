@@ -45,7 +45,7 @@
             android:id="@+id/toolbarImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="TODO"
+            android:contentDescription="Cover image"
             android:fitsSystemWindows="true"
             android:scaleType="centerCrop"
             android:src="@drawable/header"
@@ -82,7 +82,9 @@
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/about_button_support" />
+            android:text="@string/about_button_support"
+            android:visibility="gone"
+         />
 
         <TextView
             android:id="@+id/about_footer"

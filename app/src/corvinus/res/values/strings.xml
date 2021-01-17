@@ -31,7 +31,7 @@
     <string name="about_button_support">Patreon oldal megnyitása</string>
     <string name="about_footer">Az app még fejleszés alatt áll, így minden segítséget, javaslatot és támogatást megköszönünk!</string>
 
-    <string name="about_privacy_label">Adatvédelmi nzilatkozat</string>
+    <string name="about_privacy_label">Adatvédelmi nyilatkozat</string>
     <string name="about_privacy" translatable="false">https://ekonyvtar.github.io/apps-privacy_policy.html</string>
 
     <!-- Admob -->
@@ -40,7 +40,5 @@
 
 
 
-
-
-    <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
+    <string name="error_player">Hiba történt a YouTubePlayer indítása közben (%1$s)</string>
 </resources>
